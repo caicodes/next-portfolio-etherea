@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useRef } from 'react';
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Image from 'next/image';
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -49,7 +49,7 @@ export default function EthereaClient({ data }: EthereaClientProps) {
           opacity: 1,
           scale: 1,
           duration: 1.5,
-          ease: 'power2.out',
+          ease: "power2.out",
         }
       );
     }
@@ -67,7 +67,7 @@ export default function EthereaClient({ data }: EthereaClientProps) {
           opacity: 1,
           duration: 1,
           delay: 0.5,
-          ease: 'back.out(1.7)',
+          ease: "back.out(1.7)",
         }
       );
     }
@@ -85,14 +85,16 @@ export default function EthereaClient({ data }: EthereaClientProps) {
           opacity: 1,
           duration: 0.8,
           delay: 0.8,
-          ease: 'power3.out',
+          ease: "power3.out",
         }
       );
     }
 
     // Content scroll reveal
     if (contentRef.current) {
-      const elements = contentRef.current.querySelectorAll('p, h2, h3, figure, img');
+      const elements = contentRef.current.querySelectorAll(
+        "p, h2, h3, figure, img"
+      );
 
       elements.forEach((element, index) => {
         gsap.fromTo(
@@ -105,33 +107,33 @@ export default function EthereaClient({ data }: EthereaClientProps) {
             y: 0,
             opacity: 1,
             duration: 0.8,
-            ease: 'power3.out',
+            ease: "power3.out",
             scrollTrigger: {
               trigger: element,
-              start: 'top 85%',
-              end: 'top 50%',
-              toggleActions: 'play none none reverse',
+              start: "top 85%",
+              end: "top 50%",
+              toggleActions: "play none none reverse",
             },
           }
         );
       });
 
       // Image hover effects
-      const images = contentRef.current.querySelectorAll('img');
+      const images = contentRef.current.querySelectorAll("img");
       images.forEach((img) => {
-        img.addEventListener('mouseenter', () => {
+        img.addEventListener("mouseenter", () => {
           gsap.to(img, {
             scale: 1.05,
             duration: 0.4,
-            ease: 'power2.out',
+            ease: "power2.out",
           });
         });
 
-        img.addEventListener('mouseleave', () => {
+        img.addEventListener("mouseleave", () => {
           gsap.to(img, {
             scale: 1,
             duration: 0.4,
-            ease: 'power2.out',
+            ease: "power2.out",
           });
         });
       });
@@ -157,18 +159,18 @@ export default function EthereaClient({ data }: EthereaClientProps) {
           </div>
 
           {/* Hero Content */}
-          <div className="relative h-full flex items-center justify-center text-center px-6">
+          <div className="relative h-full flex items-center justify-center text-center px-6 mt-48">
             <div className="max-w-4xl">
               <h1
                 ref={titleRef}
-                className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight"
+                className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight text-shadow-dramatic"
               >
                 {data.title}
               </h1>
               {data.excerpt && (
                 <p
                   ref={excerptRef}
-                  className="text-xl md:text-2xl text-zinc-200 max-w-2xl mx-auto"
+                  className="text-xl md:text-2xl text-zinc-200 max-w-2xl mx-auto text-shadow-soft"
                 >
                   {data.excerpt}
                 </p>
@@ -212,7 +214,10 @@ export default function EthereaClient({ data }: EthereaClientProps) {
 
       {/* Additional Images Gallery (if any) */}
       {data.contentImages.length > 0 && (
-        <section className="py-20 bg-zinc-100 dark:bg-zinc-900" data-speed="0.95">
+        <section
+          className="py-20 bg-zinc-100 dark:bg-zinc-900"
+          data-speed="0.95"
+        >
           <div className="container mx-auto px-6">
             <h2 className="text-4xl font-bold text-zinc-900 dark:text-zinc-50 mb-12 text-center">
               Gallery
@@ -245,11 +250,12 @@ export default function EthereaClient({ data }: EthereaClientProps) {
       )}
 
       {/* CTA Section */}
-      <section className="py-32 bg-zinc-900 dark:bg-black text-white" data-speed="0.9">
+      <section
+        className="py-32 bg-zinc-900 dark:bg-black text-white"
+        data-speed="0.9"
+      >
         <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Explore More
-          </h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">Explore More</h2>
           <p className="text-xl text-zinc-400 mb-8 max-w-2xl mx-auto">
             Discover more projects and creative work
           </p>
