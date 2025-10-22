@@ -1,65 +1,63 @@
-import Image from "next/image";
+import HeroPanel from "@/components/HeroPanel";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <>
+      {/* Hero Section with Dark Panel */}
+      <HeroPanel>
+        <div className="container mx-auto px-6 text-center">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold text-white mb-6 tracking-tight">
+            Portfolio
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
+          <p className="text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto mb-12">
+            Creative developer crafting beautiful digital experiences
+          </p>
+          <div className="flex gap-4 justify-center">
             <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href="/about"
+              className="px-8 py-4 bg-white text-zinc-900 rounded-full font-medium hover:bg-zinc-200 transition-colors"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
+              View Work
+            </a>
             <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href="/contact"
+              className="px-8 py-4 bg-zinc-800 text-white rounded-full font-medium hover:bg-zinc-700 transition-colors border border-zinc-700"
             >
-              Learning
-            </a>{" "}
-            center.
+              Get In Touch
+            </a>
+          </div>
+        </div>
+      </HeroPanel>
+
+      {/* Additional Content Section */}
+      <section className="min-h-screen bg-white dark:bg-zinc-900 flex items-center justify-center" data-speed="1.1">
+        <div className="container mx-auto px-6 py-32 text-center">
+          <h2 className="text-4xl md:text-6xl font-bold text-zinc-900 dark:text-zinc-50 mb-6">
+            Featured Projects
+          </h2>
+          <p className="text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
+            Explore a selection of recent work showcasing design, development, and creative problem-solving.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+      </section>
+
+      {/* Another Section for scrolling demo */}
+      <section className="min-h-screen bg-zinc-100 dark:bg-black flex items-center justify-center" data-speed="0.9">
+        <div className="container mx-auto px-6 py-32 text-center">
+          <h2 className="text-4xl md:text-6xl font-bold text-zinc-900 dark:text-zinc-50 mb-6">
+            Let's Collaborate
+          </h2>
+          <p className="text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto mb-8">
+            Ready to bring your ideas to life? Let's create something extraordinary together.
+          </p>
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/contact"
+            className="inline-block px-8 py-4 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-full font-medium hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-colors"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
+            Start a Project
           </a>
         </div>
-      </main>
-    </div>
+      </section>
+    </>
   );
 }
