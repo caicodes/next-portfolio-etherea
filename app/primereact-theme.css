@@ -1,0 +1,226 @@
+/**
+ * PrimeReact Lara Theme Customization
+ *
+ * Import base Lara Dark theme and override its CSS variables
+ * with our theme system colors
+ */
+
+/* Import PrimeReact core CSS and theme into primereact layer */
+@layer primereact {
+  @import "primereact/resources/primereact.min.css";
+  @import "primereact/resources/themes/lara-dark-blue/theme.css";
+}
+
+/* Override Lara theme variables with our semantic tokens */
+:root {
+  /* Primary colors */
+  --primary-color: var(--color-primary);
+  --primary-color-text: var(--color-primary-foreground);
+
+  /* Surface colors */
+  --surface-0: var(--color-background);
+  --surface-50: var(--color-surface);
+  --surface-100: var(--color-surface);
+  --surface-200: var(--color-muted);
+
+  /* Text colors */
+  --text-color: var(--color-foreground);
+  --text-color-secondary: var(--color-muted-foreground);
+
+  /* Border colors */
+  --surface-border: var(--color-border);
+
+  /* Focus ring */
+  --focus-ring: var(--color-ring);
+
+  /* Success */
+  --green-500: var(--color-success);
+  --green-600: var(--color-success);
+
+  /* Info */
+  --blue-500: var(--color-info);
+  --blue-600: var(--color-info);
+
+  /* Warning */
+  --yellow-500: var(--color-warning);
+  --yellow-600: var(--color-warning);
+
+  /* Danger */
+  --red-500: var(--color-danger);
+  --red-600: var(--color-danger);
+}
+
+/* Additional custom overrides for better integration */
+.p-component {
+  font-family: inherit;
+}
+
+.p-inputtext {
+  background: var(--color-surface);
+  color: var(--color-foreground);
+  border-color: var(--color-border);
+}
+
+.p-inputtext:enabled:hover {
+  border-color: var(--color-ring);
+}
+
+.p-inputtext:enabled:focus {
+  border-color: var(--color-ring);
+  box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--color-ring) 20%, transparent);
+}
+
+.p-dropdown {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+.p-dropdown:not(.p-disabled):hover {
+  border-color: var(--color-ring);
+}
+
+.p-dropdown-panel {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+.p-dropdown-item {
+  color: var(--color-foreground);
+}
+
+.p-dropdown-item:not(.p-disabled):hover {
+  background: color-mix(in srgb, var(--color-muted) 30%, transparent);
+}
+
+.p-dropdown-item.p-highlight {
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+.p-datatable {
+  background: var(--color-surface);
+  color: var(--color-foreground);
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+  background: var(--color-muted);
+  color: var(--color-foreground);
+  border-color: var(--color-border);
+}
+
+.p-datatable .p-datatable-tbody > tr {
+  background: var(--color-surface);
+  color: var(--color-foreground);
+  border-color: var(--color-border);
+}
+
+.p-datatable .p-datatable-tbody > tr:hover {
+  background: color-mix(in srgb, var(--color-muted) 20%, transparent);
+}
+
+.p-checkbox .p-checkbox-box {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+.p-checkbox .p-checkbox-box.p-highlight {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.p-calendar .p-datepicker {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+  color: var(--color-foreground);
+}
+
+.p-menu {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+.p-menu .p-menuitem-link {
+  color: var(--color-foreground);
+}
+
+.p-menu .p-menuitem-link:not(.p-disabled):hover {
+  background: color-mix(in srgb, var(--color-muted) 30%, transparent);
+}
+
+.p-dialog {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+.p-dialog .p-dialog-header {
+  background: var(--color-surface);
+  color: var(--color-foreground);
+  border-bottom-color: var(--color-border);
+}
+
+.p-dialog .p-dialog-content {
+  background: var(--color-background);
+  color: var(--color-foreground);
+}
+
+.p-button {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+.p-button:enabled:hover {
+  background: color-mix(in srgb, var(--color-primary) 90%, black);
+  border-color: color-mix(in srgb, var(--color-primary) 90%, black);
+}
+
+.p-button.p-button-success {
+  background: var(--color-success);
+  border-color: var(--color-success);
+  color: var(--color-success-foreground);
+}
+
+.p-button.p-button-info {
+  background: var(--color-info);
+  border-color: var(--color-info);
+  color: var(--color-info-foreground);
+}
+
+.p-button.p-button-warning {
+  background: var(--color-warning);
+  border-color: var(--color-warning);
+  color: var(--color-warning-foreground);
+}
+
+.p-button.p-button-danger {
+  background: var(--color-danger);
+  border-color: var(--color-danger);
+  color: var(--color-danger-foreground);
+}
+
+.p-button.p-button-outlined {
+  background: transparent;
+  border-color: var(--color-border);
+  color: var(--color-foreground);
+}
+
+.p-button.p-button-outlined:enabled:hover {
+  background: color-mix(in srgb, var(--color-muted) 20%, transparent);
+}
+
+.p-sidebar {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+  color: var(--color-foreground);
+}
+
+.p-sidebar .p-sidebar-header {
+  background: var(--color-surface);
+  color: var(--color-foreground);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.p-sidebar .p-sidebar-content {
+  background: var(--color-surface);
+  color: var(--color-foreground);
+}

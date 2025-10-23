@@ -12,10 +12,17 @@ import {
 } from "@/lib/theme/utils";
 import { presetThemes } from "@/lib/theme/defaults";
 
+// PrimeReact Components
+import { Button } from "primereact/button";
+import { InputText } from "primereact/inputtext";
+import { Dropdown } from "primereact/dropdown";
+import HeaderSpacer from "@/components/HeaderSpacer";
+
 export default function ThemeBuilderClient() {
   const { theme, setTheme } = useLocalStorageTheme();
   const [workingTheme, setWorkingTheme] = useState<ThemeJSON>(theme);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [selectedPreset, setSelectedPreset] = useState<any>(null);
 
   // Refs for GSAP animations
   const containerRef = useRef<HTMLDivElement>(null);
@@ -111,14 +118,21 @@ export default function ThemeBuilderClient() {
     );
   }, [workingTheme, setTheme]);
 
+  // Prepare preset options for dropdown
+  const presetOptions = presetThemes.map((preset, index) => ({
+    label: preset.name,
+    value: index,
+  }));
+
   // Load preset
   const handleLoadPreset = useCallback(
-    (event: React.ChangeEvent<HTMLSelectElement>) => {
-      const selectedIndex = parseInt(event.target.value);
+    (e: any) => {
+      const selectedIndex = e.value;
       if (selectedIndex >= 0 && selectedIndex < presetThemes.length) {
         const selectedTheme = presetThemes[selectedIndex];
         setWorkingTheme(selectedTheme);
         setTheme(selectedTheme);
+        setSelectedPreset(e.value);
 
         // Animate preset change
         if (controlsRef.current) {
@@ -181,10 +195,12 @@ export default function ThemeBuilderClient() {
         </div>
       )}
 
+      <HeaderSpacer />
+
       {/* Header */}
       <div
         ref={headerRef}
-        className="pt-48 pb-12 bg-linear-to-b from-zinc-100 to-zinc-50 dark:from-zinc-900 dark:to-zinc-950"
+        className="py-12 bg-linear-to-b from-zinc-100 to-zinc-50 dark:from-zinc-900 dark:to-zinc-950"
       >
         <div className="container mx-auto max-w-7xl px-12">
           <h1 className="text-5xl md:text-6xl font-bold text-zinc-900 dark:text-zinc-50 mb-4">
@@ -209,73 +225,35 @@ export default function ThemeBuilderClient() {
                   <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
                     Theme Name
                   </label>
-                  <input
-                    type="text"
+                  <InputText
                     value={workingTheme.name}
                     onChange={(e) =>
                       setWorkingTheme({ ...workingTheme, name: e.target.value })
                     }
-                    className="w-full px-4 py-2 bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-lg text-zinc-900 dark:text-zinc-50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                    className="w-full"
                     placeholder="My Custom Theme"
                   />
                 </div>
 
                 <div className="flex flex-wrap gap-3">
-                  <button
+                  <Button
+                    label="Apply Theme"
+                    icon="pi pi-check"
                     onClick={applyTheme}
-                    className="inline-flex items-center gap-2 px-6 py-2.5 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors font-medium shadow-sm hover:shadow-md"
-                  >
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    Apply Theme
-                  </button>
-                  <button
+                    severity="info"
+                  />
+                  <Button
+                    label="Export JSON"
+                    icon="pi pi-download"
                     onClick={handleExport}
-                    className="inline-flex items-center gap-2 px-6 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg transition-colors font-medium shadow-sm hover:shadow-md"
-                  >
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                      />
-                    </svg>
-                    Export JSON
-                  </button>
+                    severity="success"
+                  />
                   <label className="cursor-pointer">
-                    <div className="inline-flex items-center gap-2 px-6 py-2.5 bg-purple-500 hover:bg-purple-600 text-white rounded-lg transition-colors font-medium shadow-sm hover:shadow-md">
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
-                        />
-                      </svg>
-                      Import JSON
-                    </div>
+                    <Button
+                      label="Import JSON"
+                      icon="pi pi-upload"
+                      severity="help"
+                    />
                     <input
                       type="file"
                       accept=".json"
@@ -289,20 +267,13 @@ export default function ThemeBuilderClient() {
                   <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
                     Load Preset Theme
                   </label>
-                  <select
+                  <Dropdown
+                    value={selectedPreset}
                     onChange={handleLoadPreset}
-                    className="w-full px-4 py-2.5 bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-lg text-zinc-900 dark:text-zinc-50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all cursor-pointer"
-                    defaultValue=""
-                  >
-                    <option value="" disabled>
-                      Choose a preset theme...
-                    </option>
-                    {presetThemes.map((preset, index) => (
-                      <option key={index} value={index}>
-                        {preset.name}
-                      </option>
-                    ))}
-                  </select>
+                    options={presetOptions}
+                    placeholder="Choose a preset theme..."
+                    className="w-full"
+                  />
                 </div>
               </div>
             </div>
@@ -325,18 +296,17 @@ export default function ThemeBuilderClient() {
                       <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
                         {label}
                       </label>
-                      <div className="flex items-center gap-3 p-3 bg-zinc-50 dark:bg-zinc-800 rounded-lg border border-zinc-200 dark:border-zinc-700">
+                      <div className="flex items-center gap-3">
                         <input
                           type="color"
                           value={colorValue}
                           onChange={(e) => handleColorChange(key, e.target.value)}
-                          className="w-12 h-12 rounded cursor-pointer border-2 border-zinc-300 dark:border-zinc-600"
+                          className="w-14 h-14 rounded cursor-pointer border-2 border-zinc-300 dark:border-zinc-600"
                         />
-                        <input
-                          type="text"
+                        <InputText
                           value={colorValue}
                           onChange={(e) => handleColorChange(key, e.target.value)}
-                          className="flex-1 px-3 py-2 bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-600 rounded text-zinc-900 dark:text-zinc-50 font-mono text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                          className="flex-1 font-mono text-sm"
                           placeholder="#000000"
                         />
                       </div>
