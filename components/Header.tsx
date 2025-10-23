@@ -167,6 +167,12 @@ export default function Header() {
             Styleguide
           </Link>
           <Link
+            href="/slider-demo"
+            className="font-medium text-zinc-900 dark:text-zinc-100 hover:text-zinc-600 dark:hover:text-zinc-400 transition-colors"
+          >
+            Slider
+          </Link>
+          <Link
             href="/contact"
             className="font-medium text-zinc-900 dark:text-zinc-100 hover:text-zinc-600 dark:hover:text-zinc-400 transition-colors"
           >
