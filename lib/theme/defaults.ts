@@ -1,12 +1,15 @@
-// Tailwind v4-inspired theme defaults and semantic mapping to CSS variables
+// Theme defaults with comprehensive Tailwind color palette
+import type { ThemeJSON, TailwindColors } from "./types";
+
+// Primitives
 export const primitives = {
   white: "#ffffff",
   black: "#000000",
   transparent: "transparent",
 } as const;
 
-// A small subset of Tailwind default colors (extended) for picker presets
-export const tailwindColors = {
+// Comprehensive Tailwind color palette
+export const tailwindColors: TailwindColors = {
   slate: {
     50: "#f8fafc",
     100: "#f1f5f9",
@@ -18,6 +21,7 @@ export const tailwindColors = {
     700: "#334155",
     800: "#1e293b",
     900: "#0f172a",
+    950: "#020617",
   },
   zinc: {
     50: "#fafafa",
@@ -30,6 +34,7 @@ export const tailwindColors = {
     700: "#3f3f46",
     800: "#27272a",
     900: "#18181b",
+    950: "#09090b",
   },
   blue: {
     50: "#eff6ff",
@@ -42,6 +47,7 @@ export const tailwindColors = {
     700: "#1d4ed8",
     800: "#1e40af",
     900: "#1e3a8a",
+    950: "#172554",
   },
   emerald: {
     50: "#ecfdf5",
@@ -54,34 +60,66 @@ export const tailwindColors = {
     700: "#047857",
     800: "#065f46",
     900: "#064e3b",
+    950: "#022c22",
   },
-} as const;
-
-// Semantic tokens mapping to CSS variables; these will be set on :root
-export const semanticTokens = {
-  background: "--color-background",
-  surface: "--color-surface",
-  foreground: "--color-foreground",
-  muted: "--color-muted",
-  primary: "--color-primary",
-  primaryForeground: "--color-primary-foreground",
-  accent: "--color-accent",
-  success: "--color-success",
-  info: "--color-info",
-  danger: "--color-danger",
-  border: "--color-border",
-  ring: "--color-ring",
-} as const;
-
-export type ThemeJSON = {
-  name: string;
-  primitives?: Record<string, string>;
-  colors?: Record<string, string>;
-  semantic?: Partial<Record<keyof typeof semanticTokens, string>>;
+  red: {
+    50: "#fef2f2",
+    100: "#fee2e2",
+    200: "#fecaca",
+    300: "#fca5a5",
+    400: "#f87171",
+    500: "#ef4444",
+    600: "#dc2626",
+    700: "#b91c1c",
+    800: "#991b1b",
+    900: "#7f1d1d",
+    950: "#450a0a",
+  },
+  amber: {
+    50: "#fffbeb",
+    100: "#fef3c7",
+    200: "#fde68a",
+    300: "#fcd34d",
+    400: "#fbbf24",
+    500: "#f59e0b",
+    600: "#d97706",
+    700: "#b45309",
+    800: "#92400e",
+    900: "#78350f",
+    950: "#451a03",
+  },
+  green: {
+    50: "#f0fdf4",
+    100: "#dcfce7",
+    200: "#bbf7d0",
+    300: "#86efac",
+    400: "#4ade80",
+    500: "#22c55e",
+    600: "#16a34a",
+    700: "#15803d",
+    800: "#166534",
+    900: "#14532d",
+    950: "#052e16",
+  },
+  purple: {
+    50: "#faf5ff",
+    100: "#f3e8ff",
+    200: "#e9d5ff",
+    300: "#d8b4fe",
+    400: "#c084fc",
+    500: "#a855f7",
+    600: "#9333ea",
+    700: "#7e22ce",
+    800: "#6b21a8",
+    900: "#581c87",
+    950: "#3b0764",
+  },
 };
 
+// Default theme (dark mode)
 export const defaultTheme: ThemeJSON = {
-  name: "default",
+  name: "Default Dark",
+  version: "1.0.0",
   primitives: {
     white: primitives.white,
     black: primitives.black,
@@ -90,45 +128,122 @@ export const defaultTheme: ThemeJSON = {
     primary: tailwindColors.blue[500],
     accent: tailwindColors.emerald[400],
     muted: tailwindColors.zinc[400],
-    border: tailwindColors.slate[200],
+    border: tailwindColors.slate[700],
   },
   semantic: {
-    background: "#0f172a",
-    surface: "#0b1220",
-    foreground: "#e6eef8",
+    background: tailwindColors.slate[900],
+    surface: tailwindColors.slate[800],
+    foreground: tailwindColors.slate[50],
     muted: tailwindColors.zinc[500],
+    mutedForeground: tailwindColors.zinc[400],
     primary: tailwindColors.blue[500],
-    primaryForeground: "#ffffff",
-    accent: tailwindColors.emerald[400],
-    success: "#10b981",
-    info: "#3b82f6",
-    danger: "#ef4444",
-    border: tailwindColors.slate[200],
-    ring: tailwindColors.blue[300],
+    primaryForeground: primitives.white,
+    accent: tailwindColors.emerald[500],
+    accentForeground: primitives.white,
+    success: tailwindColors.green[500],
+    successForeground: primitives.white,
+    info: tailwindColors.blue[500],
+    infoForeground: primitives.white,
+    warning: tailwindColors.amber[500],
+    warningForeground: tailwindColors.amber[950],
+    danger: tailwindColors.red[500],
+    dangerForeground: primitives.white,
+    border: tailwindColors.slate[700],
+    ring: tailwindColors.blue[400],
+  },
+  metadata: {
+    author: "System",
+    description: "Default dark theme with blue accents",
+    tags: ["dark", "default", "blue"],
+    createdAt: new Date().toISOString(),
   },
 };
 
+// Solarized Dark theme
 export const solarizedTheme: ThemeJSON = {
-  name: "solarized",
-  primitives: { white: "#fdf6e3", black: "#073642" },
+  name: "Solarized Dark",
+  version: "1.0.0",
+  primitives: {
+    white: "#fdf6e3",
+    black: "#073642"
+  },
   colors: {
     primary: "#268bd2",
     accent: "#2aa198",
     muted: "#93a1a1",
-    border: "#eee8d5",
+    border: "#073642",
   },
   semantic: {
     background: "#002b36",
     surface: "#073642",
     foreground: "#839496",
-    muted: "#93a1a1",
+    muted: "#586e75",
+    mutedForeground: "#657b83",
     primary: "#268bd2",
     primaryForeground: "#fdf6e3",
     accent: "#2aa198",
+    accentForeground: "#002b36",
     success: "#859900",
+    successForeground: "#fdf6e3",
     info: "#268bd2",
+    infoForeground: "#fdf6e3",
+    warning: "#b58900",
+    warningForeground: "#002b36",
     danger: "#dc322f",
+    dangerForeground: "#fdf6e3",
     border: "#073642",
     ring: "#2aa198",
   },
+  metadata: {
+    author: "Ethan Schoonover",
+    description: "Precision colors for machines and people",
+    tags: ["dark", "solarized", "classic"],
+    createdAt: new Date().toISOString(),
+  },
 };
+
+// Modern Purple theme
+export const modernPurpleTheme: ThemeJSON = {
+  name: "Modern Purple",
+  version: "1.0.0",
+  primitives: {
+    white: primitives.white,
+    black: primitives.black,
+  },
+  colors: {
+    primary: tailwindColors.purple[500],
+    accent: tailwindColors.emerald[400],
+    muted: tailwindColors.zinc[400],
+    border: tailwindColors.zinc[700],
+  },
+  semantic: {
+    background: "#0a0a0f",
+    surface: tailwindColors.zinc[900],
+    foreground: tailwindColors.zinc[50],
+    muted: tailwindColors.zinc[500],
+    mutedForeground: tailwindColors.zinc[400],
+    primary: tailwindColors.purple[500],
+    primaryForeground: primitives.white,
+    accent: tailwindColors.emerald[400],
+    accentForeground: tailwindColors.emerald[950],
+    success: tailwindColors.green[500],
+    successForeground: primitives.white,
+    info: tailwindColors.blue[500],
+    infoForeground: primitives.white,
+    warning: tailwindColors.amber[500],
+    warningForeground: tailwindColors.amber[950],
+    danger: tailwindColors.red[500],
+    dangerForeground: primitives.white,
+    border: tailwindColors.zinc[700],
+    ring: tailwindColors.purple[400],
+  },
+  metadata: {
+    author: "System",
+    description: "Modern theme with purple primary colors",
+    tags: ["dark", "modern", "purple"],
+    createdAt: new Date().toISOString(),
+  },
+};
+
+// All available presets
+export const presetThemes = [defaultTheme, solarizedTheme, modernPurpleTheme];

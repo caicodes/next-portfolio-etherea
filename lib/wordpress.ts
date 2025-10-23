@@ -107,6 +107,79 @@ export async function getPostById(postId: number): Promise<WordPressPost | null>
 }
 
 /**
+ * Fetch a single post by slug with embedded media and terms
+ */
+export async function getPostBySlug(slug: string): Promise<WordPressPost | null> {
+  try {
+    const response = await fetch(
+      `${WP_API_URL}/posts?slug=${slug}&_embed`,
+      {
+        next: { revalidate: 60 },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch post with slug ${slug}: ${response.statusText}`);
+    }
+
+    const posts: WordPressPost[] = await response.json();
+    return posts.length > 0 ? posts[0] : null;
+  } catch (error) {
+    console.error('Error fetching post by slug:', error);
+    return null;
+  }
+}
+
+/**
+ * Fetch all posts (with optional limit)
+ */
+export async function getAllPosts(limit?: number): Promise<WordPressPost[]> {
+  try {
+    const url = limit
+      ? `${WP_API_URL}/posts?_embed&per_page=${limit}`
+      : `${WP_API_URL}/posts?_embed`;
+
+    const response = await fetch(url, {
+      next: { revalidate: 60 },
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch posts');
+    }
+
+    const posts: WordPressPost[] = await response.json();
+    return posts;
+  } catch (error) {
+    console.error('Error fetching all posts:', error);
+    return [];
+  }
+}
+
+/**
+ * Get all post slugs for static generation
+ */
+export async function getAllPostSlugs(): Promise<string[]> {
+  try {
+    const response = await fetch(
+      `${WP_API_URL}/posts?_fields=slug&per_page=100`,
+      {
+        next: { revalidate: 3600 }, // Cache for 1 hour
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch post slugs');
+    }
+
+    const posts: Array<{ slug: string }> = await response.json();
+    return posts.map(post => post.slug);
+  } catch (error) {
+    console.error('Error fetching post slugs:', error);
+    return [];
+  }
+}
+
+/**
  * Fetch posts by category ID
  */
 export async function getPostsByCategory(categoryId: number): Promise<WordPressPost[]> {

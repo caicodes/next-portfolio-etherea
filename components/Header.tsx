@@ -149,10 +149,22 @@ export default function Header() {
             Work
           </Link>
           <Link
+            href="/landing"
+            className="font-medium text-zinc-900 dark:text-zinc-100 hover:text-zinc-600 dark:hover:text-zinc-400 transition-colors"
+          >
+            Landing
+          </Link>
+          <Link
             href="/etherea"
             className="font-medium text-zinc-900 dark:text-zinc-100 hover:text-zinc-600 dark:hover:text-zinc-400 transition-colors"
           >
             Etherea
+          </Link>
+          <Link
+            href="/theme"
+            className="font-medium text-zinc-900 dark:text-zinc-100 hover:text-zinc-600 dark:hover:text-zinc-400 transition-colors"
+          >
+            Theme
           </Link>
           <Link
             href="/contact"

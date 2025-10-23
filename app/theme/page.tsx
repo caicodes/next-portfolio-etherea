@@ -1,11 +1,12 @@
-import React from "react";
+import { Metadata } from "next";
+import ThemeBuilderClient from "./ThemeBuilderClient";
 
-export const metadata = {
-  title: "Theme Builder",
+export const metadata: Metadata = {
+  title: "Theme Builder | Portfolio",
+  description:
+    "Customize and build beautiful color themes with live preview. Export and share your custom themes.",
 };
 
-import ThemePageClient from "@/components/ThemePageClient";
-
 export default function ThemePage() {
-  return <ThemePageClient />;
+  return <ThemeBuilderClient />;
 }
