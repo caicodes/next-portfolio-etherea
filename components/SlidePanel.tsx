@@ -13,6 +13,10 @@ export default function SlidePanel({ slide, index, total }: SlidePanelProps) {
       ref={panelRef}
       className="slide-panel relative w-screen h-screen flex-shrink-0 flex items-center justify-center overflow-hidden"
       data-slide-index={index}
+      style={{
+        scrollSnapAlign: "start",
+        scrollSnapStop: "always",
+      }}
     >
       {/* Background Image (if no video) */}
       {slide.video_type === "none" && slide.background_image && (
@@ -82,14 +86,6 @@ export default function SlidePanel({ slide, index, total }: SlidePanelProps) {
             {slide.button_text}
           </Link>
         )}
-      </div>
-
-      {/* Slide Indicator */}
-      <div
-        className="absolute bottom-8 right-8 text-sm font-mono opacity-70"
-        style={{ color: slide.text_color }}
-      >
-        {index + 1} / {total}
       </div>
     </div>
   );

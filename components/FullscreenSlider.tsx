@@ -1,11 +1,12 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { FullscreenSliderProps } from "@/lib/wordpress/slider-types";
 import SlidePanel from "./SlidePanel";
+import SlideIndicator from "./SlideIndicator";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,6 +16,7 @@ export default function FullscreenSlider({
 }: FullscreenSliderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const slidesRef = useRef<HTMLDivElement>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useGSAP(
     () => {
@@ -38,9 +40,19 @@ export default function FullscreenSlider({
           start: "top top",
           end: () => `+=${totalWidth - window.innerWidth}`,
           pin: true,
-          scrub: 1,
+          scrub: 0.5, // Reduced for snappier feel
           anticipatePin: 1,
           invalidateOnRefresh: true,
+          snap: {
+            snapTo: 1 / (totalSlides - 1), // Snap to each slide
+            duration: { min: 0.2, max: 0.4 }, // Snap duration
+            ease: "power2.inOut",
+          },
+          onUpdate: (self) => {
+            // Calculate current slide based on progress
+            const slideIndex = Math.round(self.progress * (totalSlides - 1));
+            setCurrentSlide(slideIndex);
+          },
         },
       });
 
@@ -79,13 +91,20 @@ export default function FullscreenSlider({
   }
 
   return (
-    <div ref={containerRef} className={`relative ${className}`}>
+    <div
+      ref={containerRef}
+      className={`relative overflow-hidden ${className}`}
+      style={{
+        scrollSnapType: "x mandatory",
+      }}
+    >
       {/* Horizontal slides container */}
       <div
         ref={slidesRef}
         className="flex flex-row"
         style={{
           width: `${slides.length * 100}vw`,
+          scrollSnapAlign: "start",
         }}
       >
         {slides.map((slide, index) => (
@@ -97,6 +116,12 @@ export default function FullscreenSlider({
           />
         ))}
       </div>
+
+      {/* SVG Slide Indicator Overlay */}
+      <SlideIndicator
+        totalSlides={slides.length}
+        currentSlide={currentSlide}
+      />
     </div>
   );
 }
