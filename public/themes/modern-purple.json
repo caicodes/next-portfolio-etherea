@@ -1,0 +1,41 @@
+{
+  "name": "Modern Purple",
+  "version": "1.0.0",
+  "primitives": {
+    "white": "#ffffff",
+    "black": "#000000"
+  },
+  "colors": {
+    "primary": "#a855f7",
+    "accent": "#34d399",
+    "muted": "#a1a1aa",
+    "border": "#3f3f46"
+  },
+  "semantic": {
+    "background": "#0a0a0f",
+    "surface": "#18181b",
+    "foreground": "#fafafa",
+    "muted": "#71717a",
+    "mutedForeground": "#a1a1aa",
+    "primary": "#a855f7",
+    "primaryForeground": "#ffffff",
+    "accent": "#34d399",
+    "accentForeground": "#022c22",
+    "success": "#22c55e",
+    "successForeground": "#ffffff",
+    "info": "#3b82f6",
+    "infoForeground": "#ffffff",
+    "warning": "#f59e0b",
+    "warningForeground": "#451a03",
+    "danger": "#ef4444",
+    "dangerForeground": "#ffffff",
+    "border": "#3f3f46",
+    "ring": "#c084fc"
+  },
+  "metadata": {
+    "author": "System",
+    "description": "Modern theme with purple primary colors",
+    "tags": ["dark", "modern", "purple"],
+    "createdAt": "2025-01-15T00:00:00.000Z"
+  }
+}

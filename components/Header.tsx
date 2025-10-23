@@ -72,9 +72,9 @@ export default function Header() {
     }
 
     // Scroll trigger for shrinking header
-    // Start after scrolling past the hero section (100vh)
+    // Start after scrolling past 200px
     ScrollTrigger.create({
-      start: '100vh top',
+      start: '200px top',
       end: 99999,
       onUpdate: (self) => {
         setIsScrolled(self.progress > 0);
@@ -149,10 +149,22 @@ export default function Header() {
             Work
           </Link>
           <Link
+            href="/landing"
+            className="font-medium text-zinc-900 dark:text-zinc-100 hover:text-zinc-600 dark:hover:text-zinc-400 transition-colors"
+          >
+            Landing
+          </Link>
+          <Link
             href="/etherea"
             className="font-medium text-zinc-900 dark:text-zinc-100 hover:text-zinc-600 dark:hover:text-zinc-400 transition-colors"
           >
             Etherea
+          </Link>
+          <Link
+            href="/styleguide"
+            className="font-medium text-zinc-900 dark:text-zinc-100 hover:text-zinc-600 dark:hover:text-zinc-400 transition-colors"
+          >
+            Styleguide
           </Link>
           <Link
             href="/contact"

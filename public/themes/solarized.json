@@ -1,0 +1,41 @@
+{
+  "name": "Solarized Dark",
+  "version": "1.0.0",
+  "primitives": {
+    "white": "#fdf6e3",
+    "black": "#073642"
+  },
+  "colors": {
+    "primary": "#268bd2",
+    "accent": "#2aa198",
+    "muted": "#93a1a1",
+    "border": "#073642"
+  },
+  "semantic": {
+    "background": "#002b36",
+    "surface": "#073642",
+    "foreground": "#839496",
+    "muted": "#586e75",
+    "mutedForeground": "#657b83",
+    "primary": "#268bd2",
+    "primaryForeground": "#fdf6e3",
+    "accent": "#2aa198",
+    "accentForeground": "#002b36",
+    "success": "#859900",
+    "successForeground": "#fdf6e3",
+    "info": "#268bd2",
+    "infoForeground": "#fdf6e3",
+    "warning": "#b58900",
+    "warningForeground": "#002b36",
+    "danger": "#dc322f",
+    "dangerForeground": "#fdf6e3",
+    "border": "#073642",
+    "ring": "#2aa198"
+  },
+  "metadata": {
+    "author": "Ethan Schoonover",
+    "description": "Precision colors for machines and people",
+    "tags": ["dark", "solarized", "classic"],
+    "createdAt": "2011-03-15T00:00:00.000Z"
+  }
+}

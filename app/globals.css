@@ -1,4 +1,13 @@
-@import "tailwindcss";
+/* CSS Layer ordering for PrimeReact + Tailwind CSS 4 compatibility */
+@layer tailwind-base, primereact, tailwind-utilities;
+
+@layer tailwind-base {
+  @import "tailwindcss";
+}
+
+@layer tailwind-utilities {
+  /* Tailwind utilities will be injected here */
+}
 
 :root {
   --background: #ffffff;
