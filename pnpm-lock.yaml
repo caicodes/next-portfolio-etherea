@@ -27,8 +27,8 @@ importers:
         specifier: ^7.0.0
         version: 7.0.0
       primereact:
-        specifier: ^9.5.0
-        version: 9.6.5(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        specifier: ^10.9.7
+        version: 10.9.7(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react:
         specifier: 19.2.0
         version: 19.2.0
@@ -1656,8 +1656,9 @@ packages:
   primeicons@7.0.0:
     resolution: {integrity: sha512-jK3Et9UzwzTsd6tzl2RmwrVY/b8raJ3QZLzoDACj+oTJ0oX7L9Hy+XnVwgo4QVKlKpnP/Ur13SXV/pVh4LzaDw==}
 
-  primereact@9.6.5:
-    resolution: {integrity: sha512-x+a+wYDh3NFmtZi+2BGCiR/xlPhSKxnF8tJw0Tt8qXwdDcKNw4i26MRric8AWFugidt8LLze8RrCWVhyPUFc+A==}
+  primereact@10.9.7:
+    resolution: {integrity: sha512-Ap/lg9GGaS8Pq7IIlzguuG3qlaU6PYF6E0cCRo0rnWauRw/SQGvfreSVIIxqEhtR6xqlf7OV759lyvVOvBzmsQ==}
+    engines: {node: '>=14.0.0'}
     peerDependencies:
       '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
       react: ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -3682,7 +3683,7 @@ snapshots:
 
   primeicons@7.0.0: {}
 
-  primereact@9.6.5(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+  primereact@10.9.7(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
     dependencies:
       '@types/react-transition-group': 4.4.12(@types/react@19.2.2)
       react: 19.2.0
