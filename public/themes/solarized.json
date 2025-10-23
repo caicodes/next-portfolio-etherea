@@ -1,0 +1,27 @@
+{
+  "name": "solarized",
+  "primitives": {
+    "white": "#fdf6e3",
+    "black": "#073642"
+  },
+  "colors": {
+    "primary": "#268bd2",
+    "accent": "#2aa198",
+    "muted": "#93a1a1",
+    "border": "#eee8d5"
+  },
+  "semantic": {
+    "background": "#002b36",
+    "surface": "#073642",
+    "foreground": "#839496",
+    "muted": "#93a1a1",
+    "primary": "#268bd2",
+    "primaryForeground": "#fdf6e3",
+    "accent": "#2aa198",
+    "success": "#859900",
+    "info": "#268bd2",
+    "danger": "#dc322f",
+    "border": "#073642",
+    "ring": "#2aa198"
+  }
+}
